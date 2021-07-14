@@ -1,0 +1,7 @@
+﻿get-help add-migration -detailed
+add-migration -Name InitialCreate -OutputDir Persistence/Migrations/
+Update-Database
+
+migrationBuilder.Sql("CREATE TRIGGER TRG_AUTHOR_UpdateModifiedDate ON dbo.Author AFTER UPDATE AS UPDATE dbo.Author SET Modified = sysdatetime() WHERE Id IN (SELECT DISTINCT Id FROM inserted)");
+migrationBuilder.Sql("CREATE TRIGGER TRG_ARTICLE_UpdateModifiedDate ON dbo.Article AFTER UPDATE AS UPDATE dbo.Article SET Modified = sysdatetime() WHERE Id IN(SELECT DISTINCT Id FROM inserted)");
+migrationBuilder.Sql("CREATE TRIGGER TRG_COMMENT_UpdateModifiedDate ON dbo.Comment AFTER UPDATE AS UPDATE dbo.Comment SET Modified = sysdatetime() WHERE Id IN(SELECT DISTINCT Id FROM inserted)");
