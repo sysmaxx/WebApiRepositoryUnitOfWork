@@ -3,7 +3,7 @@ using EntityRepositoryLibrary;
 
 namespace DemoWebApp.Persistence.Repositories
 {
-    public interface IAuthorRepository : IRepository<Author>, IRepositoryAsync<Author>
+    public interface IAuthorRepository : IRepositorySync<Author>, IRepositoryAsync<Author>
     {
     }
 }

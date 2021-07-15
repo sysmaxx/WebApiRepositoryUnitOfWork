@@ -1,7 +1,5 @@
 ﻿using DemoWebApp.Persistence.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,6 +17,11 @@ namespace DemoWebApp.Persistence
         public UnitOfWork(Context context)
         {
             _context = context;
+            InstantiateRepositories(_context);
+        }
+
+        private void InstantiateRepositories(Context context)
+        {
             Authors = new AuthorRepository(context);
             Articles = new ArticleRepository(context);
             Comments = new CommentRepository(context);

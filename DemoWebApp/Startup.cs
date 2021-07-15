@@ -1,5 +1,6 @@
 using Configuration;
 using DemoWebApp.Persistence;
+using DemoWebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,16 +33,15 @@ namespace DemoWebApp
             services.AddLogging();
             services.AddOptions();
 
-            services.AddControllers();
-
-
-            services.ConfigureSwagger();
-
             services.AddDbContext<Context>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("Localhost")));
+                options.UseSqlServer(Configuration.GetConnectionString("Localhost")));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAuthorService, AuthorService>();
 
+            services.AddControllers();
+
+            services.ConfigureSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

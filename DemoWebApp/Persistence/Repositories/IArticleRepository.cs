@@ -3,7 +3,8 @@ using EntityRepositoryLibrary;
 
 namespace DemoWebApp.Persistence.Repositories
 {
-    public interface IArticleRepository : IRepository<Article>, IRepositoryAsync<Article>
+    public interface IArticleRepository : IRepositorySync<Article>, IRepositoryAsync<Article>
     {
+        Article GetArticleWithAuthorAndCommentsById(int id);
     }
 }

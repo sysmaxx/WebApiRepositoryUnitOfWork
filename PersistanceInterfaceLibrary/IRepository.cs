@@ -1,22 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace EntityRepositoryLibrary
 {
-    public interface IRepository<TEntity>  where TEntity : class
+    public interface IRepository<TEntity> : IRepositorySync<TEntity>, IRepositoryAsync<TEntity> where TEntity : class
     {
-        TEntity Get(object id);
-        IEnumerable<TEntity> GetAll();
-
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-        TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
-        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
-
-        void Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
-
-        void Remove(TEntity entity);
-        void RemoveRange(IEnumerable<TEntity> entities);
+        TContext Context<TContext>() where TContext : DbContext;
     }
 }
