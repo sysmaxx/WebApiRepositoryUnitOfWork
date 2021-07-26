@@ -3,7 +3,7 @@ using EntityRepositoryLibrary;
 
 namespace DemoWebApp.Persistence.Repositories
 {
-    public interface ICommentRepository : IRepositorySync<Comment>, IRepositoryAsync<Comment>
+    public interface ICommentRepository : IRepository<Comment>
     {
     }
 }

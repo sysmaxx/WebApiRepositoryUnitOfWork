@@ -11,6 +11,8 @@ namespace EntityRepositoryLibrary
         IEnumerable<TEntity> GetAll();
 
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+
+        TEntity Single(Expression<Func<TEntity, bool>> predicate);
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
         TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
 
